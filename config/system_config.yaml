@@ -1,0 +1,108 @@
+common:
+  udp_port: 5005
+  packet_format: "<II6fI3f"
+  ui_refresh_rate: 60
+  sensor_calibration_file: config/sensor_calibration.json
+  max_dt: 0.2
+  ui_pause: 0.001
+  calibrate: true
+  calibration_time: 10.0
+  gravity: 9.80665
+phase_0:
+  log_duration_sec: 60
+  health_thresholds:
+    accel_variance_max: 0.05
+    gyro_variance_max: 0.01
+  report_directory: reports/phase_0
+phase_1:
+  calibration_samples: 2000
+  static_threshold: 0.02
+  plots_directory: plots/phase_1
+  mag_cal_collection_time: 30.0
+  accel_azimuth_bins: 12
+  accel_min_samples_per_bin: 15
+  accel_sweep_max_time: 120.0
+  accel_hold_duration: 3.0
+  accel_hold_settle: 1.0
+  accel_gap_warn_deg: 45.0
+  mag_azimuth_bins: 8
+  mag_elevation_bins: 5
+  mag_min_samples_per_bin: 10
+  mag_sweep_max_time: 180.0
+  mag_hold_duration: 3.0
+  mag_hold_settle: 1.0
+  mag_drift_warn_frac: 0.03
+  allan_collection_time: 60.0
+  allan_tau_points: 90
+  bias_instability_plot_tau: 1.0
+phase_2:
+  filter_type: ESKF_6_state
+  initial_attitude:
+  - 0.0
+  - 0.0
+  - 0.0
+  noise_params:
+    accel_noise: 0.001
+    gyro_noise: 0.0001
+    gyro_bias_noise: 1.0e-05
+phase_3:
+  filter_type: ESKF_6_state
+  strapdown_mechanization: true
+  initial_velocity:
+  - 0.0
+  - 0.0
+  - 0.0
+  initial_position:
+  - 0.0
+  - 0.0
+  - 0.0
+  gravity: 9.81
+  zupt_acc_var_thresh: 0.005
+  zupt_gyro_var_thresh: 0.0005
+  adaptive_zupt_enabled: true
+  floor_ema_alpha: 0.01
+  mdr_acc_enter_ratio: 1.6
+  mdr_acc_exit_ratio: 2.5
+  mdr_gyro_enter_ratio: 3.0
+  mdr_gyro_exit_ratio: 5.0
+  zupt_min_stationary_sec: 0.15
+  maru_enabled: true
+  maru_r_yaw_scale: 0.1
+  zdu_enabled: true
+  zdu_min_hold_sec: 0.5
+  zdu_ramp_sec: 3.0
+  zdu_max_gain: 0.05
+  zaru_sigma: 0.01
+phase_4:
+  filter_type: ESKF_12_state
+  zupt_threshold: 0.2
+  zaru_threshold: 0.05
+  step_detection_threshold: 1.5
+  steady_acc_var_thresh: 0.005
+  steady_gyro_var_thresh: 0.0005
+  adaptive_zupt_enabled: true
+  floor_ema_alpha: 0.01
+  mdr_acc_enter_ratio: 1.6
+  mdr_acc_exit_ratio: 2.5
+  mdr_gyro_enter_ratio: 3.0
+  mdr_gyro_exit_ratio: 5.0
+  steady_min_sec: 0.15
+  maru_enabled: true
+  maru_r_yaw_scale: 0.05
+  zaru_sigma: 0.01
+  zupt_enabled: true
+  zupt_sigma: 0.02
+  adaptive_kf_r_enabled: true
+  kf_q_acc: 0.0001
+  kf_q_gyro: 1.0e-05
+  zdu_enabled: true
+  zdu_min_hold_sec: 0.3
+  zdu_ramp_sec: 1.0
+  zdu_max_gain: 0.15
+  step_thresh_high: 1.12
+  step_thresh_low: 0.9
+  step_min_interval: 0.3
+  step_cadence_window: 10
+  step_timeout_sec: 3.0
+  idle_hold_sec: 1.0
+  sigma_accel_vrw_scale: 1.0
